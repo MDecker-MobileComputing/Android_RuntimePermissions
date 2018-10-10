@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">RuntimePermissions</string>
+
+    <string name="button_wlan_status">WLAN-Status abfragen</string>
+    <string name="button_telefonanruf">Telefon-Anruf</string>
+    <string name="button_entfernung_ka">Entfernung zu KA</string>
+
+
+    <!-- Texte für Ortungs-Activity -->
+    <string name="titel_ortungs_activity">Entfernung zu KA</string>
+
+    <string name="button_berechne_entfernung">Entfernung zu KA berechnen</string>
+
+</resources>

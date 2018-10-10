@@ -1,0 +1,35 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <Button
+        android:id="@+id/button_wlan_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:onClick="onWLANStatusButton"
+        android:text="@string/button_wlan_status" />
+    
+    <Button
+        android:id="@+id/button_telefonanruf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_wlan_status"
+        android:layout_margin="10dp"
+        android:onClick="onPhoneCallButton"
+        android:text="@string/button_telefonanruf" />
+
+    <Button
+        android:id="@+id/button_entfernung_ka"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_telefonanruf"
+        android:layout_margin="10dp"
+        android:onClick="onEntfernungKaButton"
+        android:text="@string/button_entfernung_ka" />
+
+</RelativeLayout>
