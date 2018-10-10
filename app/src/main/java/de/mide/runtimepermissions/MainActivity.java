@@ -27,14 +27,15 @@ import android.widget.Toast;
  * </ul>
  * <br><br>
  *
- * Diese Klasse wird mit <tt>@TargetApi(25)</tt> annotiert, weil das Minimum-API-Level der App 8 ist, aber
+ * Diese Klasse wird mit <i>@TargetApi(25)</i> annotiert, weil das Minimum-API-Level der App 8 ist, aber
  * für die Runtime Permissions Methoden im Quelltext auftauchen (nämlich {@link Activity#requestPermissions(String[], int)}
  * und {@link Activity#checkSelfPermission(String)}), die erst mit API-Level 23 eingeführt wurden.
  * Diese Methoden werden aber nur dann aufgerufen, wenn zur Laufzeit durch Auslesen von
  * <i>android.os.Build.VERSION.SDK_INT</i> festgestellt wurde, dass die App auf einem Gerät mit mindestens
  * API-Level 23 läuft.
  * <a href="https://developer.android.com/reference/android/annotation/TargetApi.html">API-Doc zu Annotation TargetAPI</a>.
- * <br/><br/>
+ * <br><br>
+ *
  * Die Zuweisung der Event-Handler für die beiden Buttons geschieht über das Attribut <i>android:onClick</i> in den jeweiligen
  * Elementen der Layout-Datei.
  * <br><br>
@@ -44,6 +45,7 @@ import android.widget.Toast;
 @TargetApi(25)
 public class MainActivity extends Activity {
 
+    /** Tag für Log-Messages von dieser Activity-Klasse. */
     protected static final String TAG4LOGGING = "RuntimePermissions";
 
 
@@ -70,7 +72,6 @@ public class MainActivity extends Activity {
      *
      * @param view Referenz auf das Button-Element, das dieses Event ausgelöst hat.
      */
-
     public void onWLANStatusButton(View view) {
 
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -200,7 +201,7 @@ public class MainActivity extends Activity {
      *
      * @param intent Impliziter Intent, für den zu prüfen ist, ob er vom Gerät verarbeitet werden kann.
      *
-     * @return <tt>true</tt>, wenn der Intent verarbeitet werden kann, sonst <tt>false</tt>.
+     * @return <i>true</i>, wenn der Intent verarbeitet werden kann, sonst <i>false</i>.
      */
     protected boolean wirdIntentUnterstuetzt(Intent intent) {
 

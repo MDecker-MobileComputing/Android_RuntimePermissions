@@ -30,11 +30,12 @@ import java.util.List;
  *
  * Geografische Begriffe:
  * <ul>
- *     <li>Geografische Breite (Latitude): nördlich oder südlich vom Äquator.</li>
- *     <li>Geografische Länge (Longitude): östlich oder westlich von Greenwich.</li>
+ *     <li>Geografische Breite (Latitude): Nördlich oder südlich vom Äquator.</li>
+ *     <li>Geografische Länge (Longitude): Östlich oder westlich von Greenwich.</li>
  *     <li>Bei Koordinaten wird zuerst die Breite und dann die Länge genannt.</li>
  * </ul>
  * <br><br>
+ *
  * Beispiele für Dezimal-Koordinaten: siehe Excel-Datei <i>GeografischeKoordinaten.xls</i>
  * im Wurzel-Verzeichnis des App-Projekts.
  * <br><br>
@@ -44,6 +45,7 @@ import java.util.List;
 @TargetApi(25)
 public class OrtungsActivity extends Activity implements LocationListener {
 
+    /** Tag für Log-Messages von dieser Activity-Klasse. */
     protected static final String TAG4LOGGING = "OrtungsActivity";
 
     /** Manager-Objekt zum Zugriff auf Location-API. */
