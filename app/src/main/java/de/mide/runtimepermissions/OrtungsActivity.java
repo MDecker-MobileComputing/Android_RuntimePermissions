@@ -43,7 +43,9 @@ import java.util.List;
  * This project is licensed under the terms of the BSD 3-Clause License.
  */
 @TargetApi(25)
-public class OrtungsActivity extends Activity implements LocationListener {
+public class OrtungsActivity extends Activity
+                             implements LocationListener {
+
 
     /** Tag für Log-Messages von dieser Activity-Klasse. */
     protected static final String TAG4LOGGING = "OrtungsActivity";
@@ -260,7 +262,7 @@ public class OrtungsActivity extends Activity implements LocationListener {
         int distanzMeter = (int) location.distanceTo(_karlsruheLocation);
         int distanzKM    = distanzMeter / 1000;
 
-        _textviewErgebnis.append("\nEntfernung zu KA: " + distanzKM + " km");
+        _textviewErgebnis.append("\nEntfernung zu KA:\n" + distanzKM + " km");
     }
 
 

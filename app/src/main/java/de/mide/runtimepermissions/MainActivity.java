@@ -174,7 +174,7 @@ public class MainActivity extends Activity {
      */
     protected void telefonnummerAnfrufen() {
 
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:0721987654321") );
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:1234567890") );
 
         if ( wirdIntentUnterstuetzt(intent) ) {
 
