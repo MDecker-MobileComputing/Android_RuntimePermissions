@@ -269,11 +269,19 @@ public class OrtungsActivity extends Activity
     /**
      * Methode aus Interface {@link android.location.LocationListener},
      * wird für diese App nicht benötigt.
+     *
+     * @param provider Name des Ortungs-Providers.
+     *
+     * @param status Neuer Status des Ortungs-Providers.
+     *
+     * @param extras Zusätzliche Key-Value-Paare.
      */
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
+
         String nachricht = "LocationProvider \"" + provider +
                            "\" hat Status gewechselt auf \"" + status + "\".";
+
         Log.i(TAG4LOGGING, nachricht);
     }
 
@@ -281,6 +289,8 @@ public class OrtungsActivity extends Activity
     /**
      * Methode aus Interface {@link android.location.LocationListener},
      * wird für diese App nicht benötigt.
+     *
+     * @param provider Name des Ortungs-Providers.
      */
     @Override
     public void onProviderEnabled(String provider) {
@@ -292,6 +302,8 @@ public class OrtungsActivity extends Activity
     /**
      * Methode aus Interface {@link android.location.LocationListener},
      * wird für diese App nicht benötigt.
+     *
+     * @param provider Name des Ortungs-Providers.
      */
     @Override
     public void onProviderDisabled(String provider) {

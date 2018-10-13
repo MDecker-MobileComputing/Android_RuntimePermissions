@@ -19,11 +19,12 @@ import android.widget.Toast;
  * Demo für "Runtime Permissions" (neu ab Android 6.0 "Marshmallow", API-Level 23).
  * <br><br>
  *
- * Siehe auch:<ul>
- * <li><a href="http://developer.android.com/preview/features/runtime-permissions.html">Doku zum neuen Permission-Modell</a>.</li>
- * <li><a href="http://developer.android.com/reference/android/Manifest.permission.html">API-Doku-Seite</a> mit Permissions-Liste, auf
- * der für die einzelnen Permissions angegeben ist, ob das <i>Protection Level</i> entweder <i>Dangerous</i> oder <i>normal</i> ist.</li>
- * <li><a href="android-developers.blogspot.com/2015/08/building-better-apps-with-runtime.html">Artikel auf dem <i>Android Developers Blog</i></a>.</li>
+ * Siehe auch:
+ * <ul>
+ *   <li><a href="http://developer.android.com/preview/features/runtime-permissions.html">Doku zum neuen Permission-Modell</a>.</li>
+ *   <li><a href="http://developer.android.com/reference/android/Manifest.permission.html">API-Doku-Seite</a> mit Permissions-Liste, auf
+ *      der für die einzelnen Permissions angegeben ist, ob das <i>Protection Level</i> entweder <i>Dangerous</i> oder <i>normal</i> ist.</li>
+ *   <li><a href="android-developers.blogspot.com/2015/08/building-better-apps-with-runtime.html">Artikel auf dem <i>Android Developers Blog</i></a>.</li>
  * </ul>
  * <br><br>
  *
@@ -150,6 +151,8 @@ public class MainActivity extends Activity {
      *
      * @param permissions  Array mit den Permissions, die wir angefordert haben; enthält für unseren Fall
      *                     immer nur einen Eintrag für die Permission <i>CALL_PHONE</i>.
+     *
+     * @param grantResults Array mit den "Antworten" auf die Genehmigungsanfragen.
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
