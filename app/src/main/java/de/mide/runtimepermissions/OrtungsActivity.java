@@ -30,8 +30,8 @@ import java.util.List;
  *
  * Geografische Begriffe:
  * <ul>
- *     <li>Geografische Breite (Latitude): Nördlich oder südlich vom Äquator.</li>
- *     <li>Geografische Länge (Longitude): Östlich oder westlich von Greenwich.</li>
+ *     <li>Geografische Breite (Latitude) : Nördlich oder südlich vom Äquator.</li>
+ *     <li>Geografische Länge  (Longitude): Östlich oder westlich von Greenwich.</li>
  *     <li>Bei Koordinaten wird zuerst die Breite und dann die Länge genannt.</li>
  * </ul>
  * <br><br>
@@ -91,8 +91,8 @@ public class OrtungsActivity extends Activity
         // eines laufenden Ortung-Requests zu deaktivieren.
 
         _karlsruheLocation = new Location("DummyProvider");
-        _karlsruheLocation.setLongitude(8.4043); // geografische Länge (West/Ost)
-        _karlsruheLocation.setLatitude (49.014); // geografische Breite (Nord/Süd)
+        _karlsruheLocation.setLongitude( 8.4043 ); // geografische Länge (West/Ost)
+        _karlsruheLocation.setLatitude ( 49.014 ); // geografische Breite (Nord/Süd)
     }
 
 
@@ -143,9 +143,9 @@ public class OrtungsActivity extends Activity
      *                     immer nur einen Eintrag für die Permission <i>ACCESS_FINE_LOCATION</i>.
      */
     @Override
-    public void onRequestPermissionsResult(int requestCode,
+    public void onRequestPermissionsResult(int      requestCode,
                                            String[] permissions,
-                                           int[] grantResults) {
+                                           int[]    grantResults) {
 
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
