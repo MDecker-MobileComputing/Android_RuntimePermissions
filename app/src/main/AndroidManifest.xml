@@ -2,8 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.mide.runtimepermissions"
-    android:installLocation="auto"
-    android:versionName="1.1 (Februar 2019)">
+    android:installLocation="auto">
 
 
     <!-- Eine Permission mit "Protection Level: Normal". -->

@@ -46,7 +46,6 @@ import java.util.List;
 public class OrtungsActivity extends Activity
                              implements LocationListener {
 
-
     /** Tag für Log-Messages von dieser Activity-Klasse. */
     protected static final String TAG4LOGGING = "OrtungsActivity";
 
@@ -81,12 +80,13 @@ public class OrtungsActivity extends Activity
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ortung);
 
-        _textviewErgebnis = (TextView) findViewById(R.id.ortungsergebnis_textview);
+        _textviewErgebnis = findViewById(R.id.ortungsergebnis_textview);
 
-        _buttonEntfernungBerechnen = (Button) findViewById(R.id.button_entfernung_ka);
+        _buttonEntfernungBerechnen = findViewById(R.id.berechnungs_button);
         // Referenz auf Button-Objekt wird benötigt, um diesen Button während
         // eines laufenden Ortung-Requests zu deaktivieren.
 
@@ -106,7 +106,7 @@ public class OrtungsActivity extends Activity
      */
     public void onBerechneEntfernungsButton(View view) {
 
-        //buttonEntfernungBerechnen.setEnabled(false);
+        _buttonEntfernungBerechnen.setEnabled(false);
         _textviewErgebnis.setText("");
 
 
@@ -202,6 +202,7 @@ public class OrtungsActivity extends Activity
      * @return <i>true</i> wenn die Location-API erfolgreich initialisiert werden konnte.
      */
     protected boolean holeLocationManager() {
+
         String fehlerNachricht = "";
 
         // LocationManager holen
@@ -263,6 +264,8 @@ public class OrtungsActivity extends Activity
         int distanzKM    = distanzMeter / 1000;
 
         _textviewErgebnis.append("\nEntfernung zu KA:\n" + distanzKM + " km");
+
+        _buttonEntfernungBerechnen.setEnabled(true);
     }
 
 
@@ -294,6 +297,7 @@ public class OrtungsActivity extends Activity
      */
     @Override
     public void onProviderEnabled(String provider) {
+
         String nachricht = "Provider \"" + provider + "\" wurde gerade eingeschaltet.";
         Log.i(TAG4LOGGING, nachricht);
     }
@@ -307,6 +311,7 @@ public class OrtungsActivity extends Activity
      */
     @Override
     public void onProviderDisabled(String provider) {
+
         String nachricht = "Provider \"" + provider + "\" wurde gerade abgeschaltet.";
         Log.i(TAG4LOGGING, nachricht);
     }
@@ -326,6 +331,8 @@ public class OrtungsActivity extends Activity
 
         AlertDialog dialog = dialogBuilder.create();
         dialog.show();
+
+        _buttonEntfernungBerechnen.setEnabled(true);
     }
 
 }
