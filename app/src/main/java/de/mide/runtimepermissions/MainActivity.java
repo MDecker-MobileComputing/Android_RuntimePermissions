@@ -56,6 +56,7 @@ public class MainActivity extends Activity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
@@ -134,7 +135,7 @@ public class MainActivity extends Activity {
             // "uses-permission"-Element einkommentieren. Es kann dann ausprobiert werden,
             // wie der Dialog zur Anforderung von zwei Permissions auf einmal aussieht.
             String[] permissionArray = { Manifest.permission.CALL_PHONE
-                    /*, Manifest.permission.ACCESS_FINE_LOCATION */ };
+                                     /*, Manifest.permission.ACCESS_FINE_LOCATION */ };
 
             requestPermissions( permissionArray, 123 ); // 123: RequestCode (um Callback zuordnen zu können)
             // Auch die Methode requestPermissions() gibt es erst ab API-Level 23, deshalb Klasse
@@ -177,7 +178,7 @@ public class MainActivity extends Activity {
      */
     protected void telefonnummerAnfrufen() {
 
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:1234567890") );
+        Intent intent = new Intent( Intent.ACTION_CALL, Uri.parse("tel:1234567890") );
 
         if ( wirdIntentUnterstuetzt(intent) ) {
 
@@ -193,7 +194,7 @@ public class MainActivity extends Activity {
 
         } else {
 
-            Toast.makeText(this, "Keine Telefonie-App vorhanden", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Keine Telefonie-App vorhanden.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -212,10 +213,11 @@ public class MainActivity extends Activity {
 
         ComponentName componentName = intent.resolveActivity(packageManager);
 
-        if (componentName == null)
+        if (componentName == null) {
             return false;
-        else
+        } else {
             return true;
+        }
     }
 
 
