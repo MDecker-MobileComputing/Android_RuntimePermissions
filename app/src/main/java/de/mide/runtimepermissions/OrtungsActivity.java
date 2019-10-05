@@ -114,6 +114,7 @@ public class OrtungsActivity extends Activity
         // dann wurde die Berechtigung bei der Installation gewährt.
         int apiLevel = android.os.Build.VERSION.SDK_INT;
         if (apiLevel < 23) {
+
             Log.i(TAG4LOGGING, "API-Level von Gerät < 23, also müssen keine Runtime-Permissions überprüft werden.");
             ortungAnfordern();
             return;
@@ -171,6 +172,7 @@ public class OrtungsActivity extends Activity
 
         // Erst noch ggf. LocationManager-Objekt holen
         if (_locationManager == null) {
+
             boolean locationManagerOkay = holeLocationManager();
             if (!locationManagerOkay) return;
         }
@@ -186,6 +188,7 @@ public class OrtungsActivity extends Activity
             Log.i(TAG4LOGGING, "Methode requestSingleUpdate() aufgerufen.");
 
         } catch (SecurityException ex) {
+
             // Diese Exception sollte eigentlich nie auftreten, weil wir die Methode ortungAnfordern()
             // nur dann aufrufen, wenn überprüft wurde, dass die App aktuell die Berechtigung
             // ACCESS_FINE_LOCATION hat.
@@ -221,8 +224,10 @@ public class OrtungsActivity extends Activity
 
             StringBuffer sb = new StringBuffer();
             sb.append("Es wurden ").append(providerListe.size()).append(" LocationProvider gefunden: ");
-            for (String providerStr : providerListe)
+            for (String providerStr : providerListe) {
+
                 sb.append(providerStr).append(" ");
+            }
             sb.append(".");
             Log.i(TAG4LOGGING, sb.toString());
 
@@ -230,11 +235,13 @@ public class OrtungsActivity extends Activity
             // GPS-Provider holen
             LocationProvider locationProvider = _locationManager.getProvider(LocationManager.GPS_PROVIDER);
             if (locationProvider == null) {
+
                 fehlerNachricht = "LocationProvider für GPS konnte nicht geholt werden.";
                 Log.e(TAG4LOGGING, fehlerNachricht);
                 zeigeFehlerDialog(fehlerNachricht);
                 return false;
             } else {
+
                 Log.i(TAG4LOGGING, "Location-Manager für GPS konnte geholt werden: " + locationProvider);
                 return true;
             }
@@ -253,7 +260,7 @@ public class OrtungsActivity extends Activity
     @Override
     public void onLocationChanged(Location location) {
 
-        Log.i(TAG4LOGGING, "Neue GPS-Ortung erhalten: " + location);
+        Log.i(TAG4LOGGING, "Neue GPS-Ortung erhalten: " + location          );
         Log.i(TAG4LOGGING, "Koordinaten von KA:       " + _karlsruheLocation);
 
         _textviewErgebnis.append("Aktuelle GPS-Koordinaten:\n");
