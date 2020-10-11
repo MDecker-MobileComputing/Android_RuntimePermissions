@@ -51,8 +51,7 @@ public class MainActivity extends Activity {
 
 
     /**
-     * Lifecycle-Methode, es wird nur die Layout-Datei geladen
-     * (die Event-Handler-Methoden für die beiden Buttons werden in der Layout-Datei zugewiesen).
+     * Lifecycle-Methode zur Initialisierung des Activity-Objekts.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,8 +213,11 @@ public class MainActivity extends Activity {
         ComponentName componentName = intent.resolveActivity(packageManager);
 
         if (componentName == null) {
+            
             return false;
+            
         } else {
+            
             return true;
         }
     }

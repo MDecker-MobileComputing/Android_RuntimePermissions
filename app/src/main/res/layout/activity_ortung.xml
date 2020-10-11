@@ -21,6 +21,7 @@
               android:layout_margin="10dp"
               android:layout_below="@id/berechnungs_button"
               android:textSize="25sp"
+              android:padding="5dp"
               android:layout_alignParentBottom="true"  />
 
 </RelativeLayout>

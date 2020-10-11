@@ -240,11 +240,13 @@ public class OrtungsActivity extends Activity
                 Log.e(TAG4LOGGING, fehlerNachricht);
                 zeigeFehlerDialog(fehlerNachricht);
                 return false;
+                
             } else {
 
                 Log.i(TAG4LOGGING, "Location-Manager für GPS konnte geholt werden: " + locationProvider);
                 return true;
             }
+            
         } // _locationManager != null
     }
 
