@@ -102,6 +102,7 @@ public class MainActivity extends Activity {
         // API-Level der Android-Version auf dem aktuellen Gerät abfragen
         int apiLevel = android.os.Build.VERSION.SDK_INT;
         if (apiLevel < 23) {
+
             telefonnummerAnfrufen();
             return;
         }
@@ -134,7 +135,7 @@ public class MainActivity extends Activity {
             // "uses-permission"-Element einkommentieren. Es kann dann ausprobiert werden,
             // wie der Dialog zur Anforderung von zwei Permissions auf einmal aussieht.
             String[] permissionArray = { Manifest.permission.CALL_PHONE
-                                     /*, Manifest.permission.ACCESS_FINE_LOCATION */ };
+                    /*, Manifest.permission.ACCESS_FINE_LOCATION */ };
 
             requestPermissions( permissionArray, 123 ); // 123: RequestCode (um Callback zuordnen zu können)
             // Auch die Methode requestPermissions() gibt es erst ab API-Level 23, deshalb Klasse
@@ -213,11 +214,11 @@ public class MainActivity extends Activity {
         ComponentName componentName = intent.resolveActivity(packageManager);
 
         if (componentName == null) {
-            
+
             return false;
-            
+
         } else {
-            
+
             return true;
         }
     }
