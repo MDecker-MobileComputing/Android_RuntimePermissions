@@ -120,14 +120,17 @@ public class OrtungsActivity extends Activity
             return;
         }
 
-        if ( checkSelfPermission( Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED ) {
+        // wir benötigen mindestens die Berechtigung für ACCESS_COARSE_LOCATION
+        if ( checkSelfPermission( Manifest.permission.ACCESS_COARSE_LOCATION ) == PackageManager.PERMISSION_GRANTED ||
+                checkSelfPermission( Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED) {
 
             // App hat schon die Permission
             ortungAnfordern();
 
         } else {
 
-            String[] permissionArray = { Manifest.permission.ACCESS_FINE_LOCATION };
+            String[] permissionArray = { Manifest.permission.ACCESS_FINE_LOCATION,
+                                         Manifest.permission.ACCESS_COARSE_LOCATION };
             requestPermissions( permissionArray, 321 ); // 321: RequestCode (um Callback zuordnen zu können)
             // Callback-Methode: onRequestPermissionsResult
         }
@@ -184,6 +187,7 @@ public class OrtungsActivity extends Activity
             // letztes Argument looper=null (hiermit kann Thread angegeben werden, in dem Call-Back
             // ausgeführt werden soll)
             // Callback-Methode: onLocationChanged
+            // liefert Ortung mit Genauigkeit "fine" oder "coarse" zurück
 
             Log.i(TAG4LOGGING, "Methode requestSingleUpdate() aufgerufen.");
 
