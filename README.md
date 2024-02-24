@@ -2,9 +2,7 @@
 
 <br>
 
-App demonstrates the *Runtime Permissions*, which were introduced with version 6.0 (Marshmallow) of Android.
-
-<br>
+Die App demonstriert die mit Android 6.0 eingeführten [Runtime Permissions](https://developer.android.com/guide/topics/permissions/overview#runtime).
 
 Identifiers (names for classes, variables and methods) and UI texts are in German only.
 
@@ -16,11 +14,11 @@ Identifiers (names for classes, variables and methods) and UI texts are in Germa
 
 <br>
 
-![Screenshot 1](screenshot_1.png)  ![Screenshot 2](screenshot_2.png)
+![Screenshot 1](screenshot_1.png) &nbsp; ![Screenshot 2](screenshot_2.png)
 
 <br>
 
-![Screenshot 3](screenshot_3.png)  ![Screenshot 4](screenshot_4.png)
+![Screenshot 3](screenshot_3.png) &nbsp; ![Screenshot 4](screenshot_4.png)
 
 <br>
 
