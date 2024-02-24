@@ -1,4 +1,4 @@
-package de.mide.runtimepermissions;
+package de.mide.android.runtime_permissions;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("de.mide.runtimepermissions", appContext.getPackageName());
+        assertEquals("de.mide.android.runtime_permissions", appContext.getPackageName());
     }
 }

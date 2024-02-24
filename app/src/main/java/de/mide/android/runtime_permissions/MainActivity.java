@@ -1,4 +1,4 @@
-package de.mide.runtimepermissions;
+package de.mide.android.runtime_permissions;
 
 import android.Manifest;
 import android.annotation.TargetApi;

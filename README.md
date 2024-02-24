@@ -2,9 +2,8 @@
 
 <br>
 
-Die App demonstriert die mit Android 6.0 eingeführten [Runtime Permissions](https://developer.android.com/guide/topics/permissions/overview#runtime).
-
-Identifiers (names for classes, variables and methods) and UI texts are in German only.
+Die App demonstriert die mit Android 6.0 eingeführten 
+[Runtime Permissions](https://developer.android.com/guide/topics/permissions/overview#runtime).
 
 <br>
 

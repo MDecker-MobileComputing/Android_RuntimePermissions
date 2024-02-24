@@ -7,21 +7,21 @@
 
 
     <Button android:id="@+id/berechnungs_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:onClick="onBerechneEntfernungsButton"
-            android:text="@string/button_berechne_entfernung" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:onClick="onBerechneEntfernungsButton"
+        android:text="@string/button_berechne_entfernung" />
 
 
     <TextView android:id="@+id/ortungsergebnis_textview"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="#FFFF00"
-              android:layout_margin="10dp"
-              android:layout_below="@id/berechnungs_button"
-              android:textSize="25sp"
-              android:padding="5dp"
-              android:layout_alignParentBottom="true"  />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFF00"
+        android:layout_margin="10dp"
+        android:layout_below="@id/berechnungs_button"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:layout_alignParentBottom="true"  />
 
 </RelativeLayout>

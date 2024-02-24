@@ -13,7 +13,7 @@
         android:layout_margin="10dp"
         android:onClick="onWLANStatusButton"
         android:text="@string/button_wlan_status" />
-    
+
     <Button
         android:id="@+id/button_telefonanruf"
         android:layout_width="match_parent"
