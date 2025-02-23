@@ -83,7 +83,8 @@ public class MainActivity extends Activity {
 
         Toast.makeText( this,
                     "WLAN ist eingeschaltet: " + wifiManager.isWifiEnabled(),
-                         Toast.LENGTH_LONG ).show();
+                         Toast.LENGTH_LONG
+                      ).show();
     }
 
 
