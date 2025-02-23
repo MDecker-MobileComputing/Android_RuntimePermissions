@@ -80,18 +80,18 @@ public class OrtungsActivity extends Activity
      * Koordinaten von Karlsruhe.
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState ) {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ortung);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_ortung );
 
-        _textviewErgebnis = findViewById(R.id.ortungsergebnis_textview);
+        _textviewErgebnis = findViewById( R.id.ortungsergebnis_textview );
 
-        _buttonEntfernungBerechnen = findViewById(R.id.berechnungs_button);
+        _buttonEntfernungBerechnen = findViewById( R.id.berechnungs_button );
         // Referenz auf Button-Objekt wird benötigt, um diesen Button während
         // eines laufenden Ortung-Requests zu deaktivieren.
 
-        _karlsruheLocation = new Location("DummyProvider");
+        _karlsruheLocation = new Location( "DummyProvider" );
         _karlsruheLocation.setLongitude( 8.4043 ); // geografische Länge (West/Ost)
         _karlsruheLocation.setLatitude ( 49.014 ); // geografische Breite (Nord/Süd)
     }
@@ -105,33 +105,35 @@ public class OrtungsActivity extends Activity
      *
      * @param view Button, der das Event ausgelöst hat.
      */
-    public void onBerechneEntfernungsButton(View view) {
+    public void onBerechneEntfernungsButton( View view ) {
 
-        _buttonEntfernungBerechnen.setEnabled(false);
-        _textviewErgebnis.setText("");
+        _buttonEntfernungBerechnen.setEnabled( false );
+        _textviewErgebnis.setText( "" );
 
 
         // Wenn die App auf einem Gerät mit einem kleineren API-Level als 23 läuft,
         // dann wurde die Berechtigung bei der Installation gewährt.
         int apiLevel = android.os.Build.VERSION.SDK_INT;
-        if (apiLevel < 23) {
+        if ( apiLevel < 23 ) {
 
-            Log.i(TAG4LOGGING, "API-Level von Gerät < 23, also müssen keine Runtime-Permissions überprüft werden.");
+            Log.i( TAG4LOGGING, "API-Level von Gerät < 23, also müssen keine Runtime-Permissions überprüft werden." );
             ortungAnfordern();
             return;
         }
 
         // wir benötigen mindestens die Berechtigung für ACCESS_COARSE_LOCATION
         if ( checkSelfPermission( Manifest.permission.ACCESS_COARSE_LOCATION ) == PackageManager.PERMISSION_GRANTED ||
-                checkSelfPermission( Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED) {
+             checkSelfPermission( Manifest.permission.ACCESS_FINE_LOCATION   ) == PackageManager.PERMISSION_GRANTED ) {
 
             // App hat schon die Permission
             ortungAnfordern();
 
         } else {
 
-            String[] permissionArray = { Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION };
+            String[] permissionArray = {
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            };
             requestPermissions( permissionArray, 321 ); // 321: RequestCode (um Callback zuordnen zu können)
             // Callback-Methode: onRequestPermissionsResult
         }
@@ -148,11 +150,11 @@ public class OrtungsActivity extends Activity
      *                     immer nur einen Eintrag für die Permission <i>ACCESS_FINE_LOCATION</i>.
      */
     @Override
-    public void onRequestPermissionsResult(int      requestCode,
-                                           String[] permissions,
-                                           int[]    grantResults) {
+    public void onRequestPermissionsResult( int      requestCode,
+                                            String[] permissions,
+                                            int[]    grantResults ) {
 
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if ( grantResults[0] == PackageManager.PERMISSION_GRANTED ) {
 
             ortungAnfordern();
 
@@ -175,31 +177,31 @@ public class OrtungsActivity extends Activity
     protected void ortungAnfordern() {
 
         // Erst noch ggf. LocationManager-Objekt holen
-        if (_locationManager == null) {
+        if ( _locationManager == null ) {
 
             boolean locationManagerOkay = holeLocationManager();
-            if (!locationManagerOkay) return;
+            if ( !locationManagerOkay ) { return; }
         }
 
         try {
 
-            _locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, this, null);
+            _locationManager.requestSingleUpdate( LocationManager.GPS_PROVIDER, this, null );
             // Methode steht erst ab API-Level 9 zur Verfügung;
             // letztes Argument looper=null (hiermit kann Thread angegeben werden, in dem Call-Back
             // ausgeführt werden soll)
             // Callback-Methode: onLocationChanged
             // liefert Ortung mit Genauigkeit "fine" oder "coarse" zurück
 
-            Log.i(TAG4LOGGING, "Methode requestSingleUpdate() aufgerufen.");
+            Log.i( TAG4LOGGING, "Methode requestSingleUpdate() aufgerufen." );
 
-        } catch (SecurityException ex) {
+        } catch ( SecurityException ex ) {
 
             // Diese Exception sollte eigentlich nie auftreten, weil wir die Methode ortungAnfordern()
             // nur dann aufrufen, wenn überprüft wurde, dass die App aktuell die Berechtigung
             // ACCESS_FINE_LOCATION hat.
             String fehlermeldung = "SecurityException beim Aufruf der requestSingleUpdate()-Methode: " + ex;
-            zeigeFehlerDialog(fehlermeldung);
-            Log.e(TAG4LOGGING, fehlermeldung);
+            zeigeFehlerDialog( fehlermeldung );
+            Log.e( TAG4LOGGING, fehlermeldung );
         }
     }
 
@@ -214,41 +216,45 @@ public class OrtungsActivity extends Activity
         String fehlerNachricht = "";
 
         // LocationManager holen
-        _locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        if (_locationManager == null) {
+        _locationManager = (LocationManager) this.getSystemService( Context.LOCATION_SERVICE );
+        if ( _locationManager == null ) {
 
             fehlerNachricht = "LocationManager-Objekt konnte nicht geholt werden.";
-            Log.e(TAG4LOGGING, fehlerNachricht);
-            zeigeFehlerDialog(fehlerNachricht);
+            Log.e( TAG4LOGGING, fehlerNachricht );
+            zeigeFehlerDialog( fehlerNachricht );
             return false;
 
         } else {
 
             // Alle LocationProvider abfragen und auf Logger ausgeben
-            List<String> providerListe = _locationManager.getProviders(true);
+            List<String> providerListe = _locationManager.getProviders( true );
+
+            int anzahlProvider = providerListe.size();
 
             StringBuffer sb = new StringBuffer();
-            sb.append("Es wurden ").append(providerListe.size()).append(" LocationProvider gefunden: ");
-            for (String providerStr : providerListe) {
+            sb.append( "Es wurden " )
+              .append( anzahlProvider )
+              .append(" LocationProvider gefunden: ");
+            for ( String providerStr : providerListe ) {
 
-                sb.append(providerStr).append(" ");
+                sb.append( providerStr ).append( " " );
             }
-            sb.append(".");
-            Log.i(TAG4LOGGING, sb.toString());
+            sb.append( "." );
+            Log.i( TAG4LOGGING, sb.toString() );
 
 
             // GPS-Provider holen
-            LocationProvider locationProvider = _locationManager.getProvider(LocationManager.GPS_PROVIDER);
-            if (locationProvider == null) {
+            LocationProvider locationProvider = _locationManager.getProvider( LocationManager.GPS_PROVIDER );
+            if ( locationProvider == null ) {
 
                 fehlerNachricht = "LocationProvider für GPS konnte nicht geholt werden.";
-                Log.e(TAG4LOGGING, fehlerNachricht);
-                zeigeFehlerDialog(fehlerNachricht);
+                Log.e( TAG4LOGGING, fehlerNachricht );
+                zeigeFehlerDialog( fehlerNachricht );
                 return false;
 
             } else {
 
-                Log.i(TAG4LOGGING, "Location-Manager für GPS konnte geholt werden: " + locationProvider);
+                Log.i( TAG4LOGGING, "Location-Manager für GPS konnte geholt werden: " + locationProvider );
                 return true;
             }
 
@@ -265,21 +271,21 @@ public class OrtungsActivity extends Activity
      * @param location Ortungs-Objekt
      */
     @Override
-    public void onLocationChanged(Location location) {
+    public void onLocationChanged( Location location ) {
 
-        Log.i(TAG4LOGGING, "Neue GPS-Ortung erhalten: " + location          );
-        Log.i(TAG4LOGGING, "Koordinaten von KA:       " + _karlsruheLocation);
+        Log.i( TAG4LOGGING, "Neue GPS-Ortung erhalten: " + location           );
+        Log.i( TAG4LOGGING, "Koordinaten von KA:       " + _karlsruheLocation );
 
-        _textviewErgebnis.append("Aktuelle GPS-Koordinaten:\n\n");
-        _textviewErgebnis.append("Breite (N/S): " + location.getLatitude () + "°\n");
-        _textviewErgebnis.append("Länge (W/O):  " + location.getLongitude() + "°\n");
+        _textviewErgebnis.append( "Aktuelle GPS-Koordinaten:\n\n" );
+        _textviewErgebnis.append( "Breite (N/S): " + location.getLatitude () + "°\n" );
+        _textviewErgebnis.append( "Länge (W/O):  " + location.getLongitude() + "°\n" );
 
-        int distanzMeter = (int) location.distanceTo(_karlsruheLocation);
+        int distanzMeter = (int) location.distanceTo( _karlsruheLocation );
         int distanzKM    = distanzMeter / 1000;
 
-        _textviewErgebnis.append("\nEntfernung zu KA:\n" + distanzKM + " km");
+        _textviewErgebnis.append( "\nEntfernung zu KA:\n" + distanzKM + " km" );
 
-        _buttonEntfernungBerechnen.setEnabled(true);
+        _buttonEntfernungBerechnen.setEnabled( true );
     }
 
 
@@ -299,7 +305,7 @@ public class OrtungsActivity extends Activity
         String nachricht = "LocationProvider \"" + provider +
                 "\" hat Status gewechselt auf \"" + status + "\".";
 
-        Log.i(TAG4LOGGING, nachricht);
+        Log.i( TAG4LOGGING, nachricht );
     }
 
 
@@ -310,10 +316,10 @@ public class OrtungsActivity extends Activity
      * @param provider Name des Ortungs-Providers.
      */
     @Override
-    public void onProviderEnabled(String provider) {
+    public void onProviderEnabled( String provider ) {
 
         String nachricht = "Provider \"" + provider + "\" wurde gerade eingeschaltet.";
-        Log.i(TAG4LOGGING, nachricht);
+        Log.i( TAG4LOGGING, nachricht );
     }
 
 
@@ -324,10 +330,10 @@ public class OrtungsActivity extends Activity
      * @param provider Name des Ortungs-Providers.
      */
     @Override
-    public void onProviderDisabled(String provider) {
+    public void onProviderDisabled( String provider ) {
 
         String nachricht = "Provider \"" + provider + "\" wurde gerade abgeschaltet.";
-        Log.i(TAG4LOGGING, nachricht);
+        Log.i( TAG4LOGGING, nachricht );
     }
 
 
@@ -336,17 +342,17 @@ public class OrtungsActivity extends Activity
      *
      * @param fehlerNachricht Anzuzeigende Fehlermeldung.
      */
-    protected void zeigeFehlerDialog(String fehlerNachricht) {
+    protected void zeigeFehlerDialog( String fehlerNachricht ) {
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        dialogBuilder.setTitle("Fehlermeldung");
-        dialogBuilder.setMessage(fehlerNachricht);
-        dialogBuilder.setPositiveButton("Ok", null);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder( this );
+        dialogBuilder.setTitle( "Fehlermeldung" );
+        dialogBuilder.setMessage( fehlerNachricht );
+        dialogBuilder.setPositiveButton( "Ok", null );
 
         AlertDialog dialog = dialogBuilder.create();
         dialog.show();
 
-        _buttonEntfernungBerechnen.setEnabled(true);
+        _buttonEntfernungBerechnen.setEnabled( true );
     }
 
 }

@@ -54,10 +54,10 @@ public class MainActivity extends Activity {
      * Lifecycle-Methode zur Initialisierung des Activity-Objekts.
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState ) {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_main );
     }
 
 
@@ -73,16 +73,17 @@ public class MainActivity extends Activity {
      *
      * @param view Referenz auf das Button-Element, das dieses Event ausgelöst hat.
      */
-    public void onWLANStatusButton(View view) {
+    public void onWLANStatusButton( View view ) {
 
-        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        if (wifiManager == null) {
-            Toast.makeText(this, "WifiManager nicht verfügbar", Toast.LENGTH_LONG).show();
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService( Context.WIFI_SERVICE );
+        if ( wifiManager == null ) {
+            Toast.makeText(this, "WifiManager nicht verfügbar", Toast.LENGTH_LONG ).show();
             return;
         }
 
-        Toast.makeText(this, "WLAN ist eingeschaltet: " + wifiManager.isWifiEnabled(),
-                Toast.LENGTH_LONG).show();
+        Toast.makeText( this,
+                    "WLAN ist eingeschaltet: " + wifiManager.isWifiEnabled(),
+                         Toast.LENGTH_LONG ).show();
     }
 
 
@@ -97,11 +98,11 @@ public class MainActivity extends Activity {
      *
      * @param view Referenz auf das UI-Element, das dieses Event ausgelöst hat.
      */
-    public void onPhoneCallButton(View view) {
+    public void onPhoneCallButton( View view ) {
 
         // API-Level der Android-Version auf dem aktuellen Gerät abfragen
         int apiLevel = android.os.Build.VERSION.SDK_INT;
-        if (apiLevel < 23) {
+        if ( apiLevel < 23 ) {
 
             telefonnummerAnfrufen();
             return;
@@ -156,17 +157,19 @@ public class MainActivity extends Activity {
      * @param grantResults Array mit den "Antworten" auf die Genehmigungsanfragen.
      */
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult( int requestCode, String[] permissions, int[] grantResults ) {
 
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if ( grantResults[0] == PackageManager.PERMISSION_GRANTED ) {
 
             telefonnummerAnfrufen();
 
         } else {
 
-            Toast.makeText(this,
+            Toast.makeText(
+                    this,
                     "Berechtigung verweigert, deshalb kann keine Telefon-Nummer angewählt werden.",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_LONG
+                ).show();
         }
     }
 
@@ -178,23 +181,29 @@ public class MainActivity extends Activity {
      */
     protected void telefonnummerAnfrufen() {
 
-        Intent intent = new Intent( Intent.ACTION_CALL, Uri.parse("tel:1234567890") );
+        Uri uri = Uri.parse("tel:1234567890");
+        Intent intent = new Intent( Intent.ACTION_CALL, uri );
 
         if ( wirdIntentUnterstuetzt(intent) ) {
 
             try {
-                startActivity(intent);
+
+                startActivity( intent );
             }
-            catch (SecurityException ex) {
+            catch ( SecurityException ex ) {
                 // Diese Exception sollte nicht auftreten, weil wir diese Methode nur dann
                 // aufrufen, wenn wird in der Methode onRequestPermissionsResult() festgestellt
                 // haben, dass wir die Runtime-Permission haben
-                Log.e(TAG4LOGGING, "Exception beim Versenden von Intent aufgetreten." + ex);
+                Log.e( TAG4LOGGING, "Exception beim Versenden von Intent aufgetreten." + ex );
             }
 
         } else {
 
-            Toast.makeText(this, "Keine Telefonie-App vorhanden.", Toast.LENGTH_LONG).show();
+            Toast.makeText(
+                    this,
+                    "Keine Telefonie-App vorhanden.",
+                    Toast.LENGTH_LONG
+                ).show();
         }
     }
 
@@ -207,13 +216,13 @@ public class MainActivity extends Activity {
      *
      * @return <i>true</i>, wenn der Intent verarbeitet werden kann, sonst <i>false</i>.
      */
-    protected boolean wirdIntentUnterstuetzt(Intent intent) {
+    protected boolean wirdIntentUnterstuetzt( Intent intent ) {
 
         PackageManager packageManager = this.getPackageManager();
 
-        ComponentName componentName = intent.resolveActivity(packageManager);
+        ComponentName componentName = intent.resolveActivity( packageManager );
 
-        if (componentName == null) {
+        if ( componentName == null ) {
 
             return false;
 
@@ -229,10 +238,10 @@ public class MainActivity extends Activity {
      *
      * @param view Referenz auf das Button-Element, das dieses Event ausgelöst hat.
      */
-    public void onEntfernungKaButton(View view) {
+    public void onEntfernungKaButton( View view ) {
 
-        Intent intent = new Intent(this, OrtungsActivity.class);
-        startActivity(intent);
+        Intent intent = new Intent( this, OrtungsActivity.class );
+        startActivity( intent );
     }
 
 }
